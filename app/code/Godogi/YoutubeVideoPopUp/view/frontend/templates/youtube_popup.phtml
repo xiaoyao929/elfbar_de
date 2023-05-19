@@ -1,0 +1,202 @@
+<?php if($videos = $this->getYoutubeVideos() || $pdfs = $this->getPdfLinks()){ ?>
+  <div class="product-video-pdf-links">
+<?php
+}
+
+    if($videos = $this->getYoutubeVideos()){ ?>
+          <?php
+          foreach ($videos as $key => $video ) {
+            ?>
+              <a href="#" class="open-youtube-video" data-popup-id="youtube-video-popup-<?= $key ?>">
+                <span class="circle">
+                  <img src='<?php echo $this->getViewFileUrl('Godogi_YoutubeVideoPopUp::images/video-icon.png'); ?>' alt="Play Video" width="60" height="60">
+                </span>
+                <span>VIDEO</span>
+              </a>
+              <div class="youtube-video-popup" id="youtube-video-popup-<?= $key ?>">
+                  <div class="youtube-video">
+                      <div class="youtube-video-div">
+                          <input type="hidden" value="<?= $video ?>"/>
+                          <iframe width="750" height="426" src="<?= $video ?>" allowfullscreen="true">
+                          </iframe>
+                      </div>
+                  </div>
+              </div>
+              <?php
+          }
+          ?>
+    <?php }
+
+    if($pdfs = $this->getPdfLinks()){
+        foreach ($pdfs as $pdf ) {
+            ?>
+              <a href="<?php echo $pdf; ?>" class="open-pdf-link"  target="_blank" >
+                <span class="circle">
+                  <img src='<?php echo $this->getViewFileUrl('Godogi_YoutubeVideoPopUp::images/installation-icon.png'); ?>' alt="Play Video" width="60" height="60">
+                </span>
+                <span>INSTRUCTIONS</span>
+              </a>
+            <?php
+        }
+    }
+
+
+
+if($videos = $this->getYoutubeVideos() || $pdfs = $this->getPdfLinks()){ ?>
+  </div>
+<?php } ?>
+
+<?php if($videos = $this->getYoutubeVideos()){ ?>
+  <script>
+     require(
+         [
+             'jquery',
+             'Magento_Ui/js/modal/modal'
+         ],
+         function (
+             $,
+             modal
+         ) {
+             var modaloptions = {
+                 type: 'popup',
+                 modalClass: 'youtube-video-modal-popup',
+                 responsive: false,
+                 innerScroll: false,
+                 clickableOverlay: true,
+                 title: '<?php echo $this->getProductName(); ?>',
+                 buttons: []
+             };
+             $( ".open-youtube-video" ).each(function( index ) {
+                 var currentElement = $(this);
+                 var popupId = currentElement.data("popup-id")
+                 var callforoption = modal(modaloptions, $('#' + popupId));
+                 currentElement.click(function(){
+                   $('#' + popupId).modal('openModal');
+                 });
+            });
+             $('.youtube-video-popup').on('modalclosed', function() {
+                $('.youtube-video-div').each(function( index ) {
+                    var currentElement = $(this);
+                    currentElement.find('iframe').first().attr("src","https://www.youtube.com");
+                    var youtubeUrl = currentElement.find('input').first().val();
+                    currentElement.find('iframe').first().attr("src", youtubeUrl);
+                });
+             });
+         }
+     );
+  </script>
+  <script>
+  /*
+      require([
+          'jquery',
+          'slick'
+      ], function ($) {
+          jQuery(document).ready(function () {
+              jQuery(".youtube-videos").slick({
+                  dots: false,
+                  infinite: false,
+                  speed: 300,
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+              });
+          });
+      });
+      */
+  </script>
+<?php } ?>
+<?php if($videos = $this->getYoutubeVideos() || $pdfs = $this->getPdfLinks()){ ?>
+  <style type="text/css">
+    .open-youtube-video .circle, .open-pdf-link .circle {
+      text-align: center;
+      display: inline-block;
+      line-height: 10px;
+    }
+    .product-video-pdf-links {
+      display: inline-block;
+      text-align: center;
+      margin-left: calc(88px + 4%);
+    }
+    .youtube-video-popup iframe{
+
+    }
+    .open-youtube-video {
+    	display: inline-block;
+    	margin-right: 10px;
+    	width: 86px;
+      margin-bottom: 15px;
+    }
+    .slick-prev {
+      background-image: url(<?php echo $this->getViewFileUrl('mage/gallery/gallery.png'); ?>) !important;
+      left: -40px;
+      width: 50px;
+      height: 50px;
+      z-index: 100;
+      background-position: -100px 306px !important;
+      border: unset !important;
+      box-shadow: unset !important;
+    }
+    .slick-prev::before {
+      content: unset;
+    }
+    .slick-next {
+      background-image: url(<?php echo $this->getViewFileUrl('mage/gallery/gallery.png'); ?>) !important;
+      right: -40px;
+      width: 50px;
+      height: 50px;
+      z-index: 100;
+      background-position: -172px 306px !important;
+      border: unset !important;
+      box-shadow: unset !important;
+    }
+    .slick-next::before {
+      content: unset;
+    }
+    .youtube-video-modal-popup .modal-inner-wrap {
+      width: 810px;
+    }
+    .open-youtube-video span, .open-pdf-link span {
+      display: block;
+    }
+    .open-pdf-link {
+    	display: inline-block;
+    	margin-right: 10px;
+      margin-bottom: 15px;
+    	width: 86px;
+    }
+    .modal-popup.youtube-video-modal-popup .slick-prev.slick-arrow.slick-disabled, .modal-popup.youtube-video-modal-popup .slick-next.slick-arrow.slick-disabled {
+      cursor: initial;
+      opacity: 0.3;
+      filter: alpha(opacity=30);
+    }
+    @media screen and (max-width: 840px) {
+      .youtube-video-modal-popup .modal-inner-wrap {
+        width: calc(100% - 30px);
+      }
+      .youtube-video-div iframe{
+        width: 100% !important;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      .product-video-pdf-links {
+        margin-left: 0px;
+        margin-bottom: 20px;
+      }
+      .youtube-video-modal-popup{
+        z-index: 99999 !important;
+      }
+      .youtube-video-div iframe {
+      	height: 380px;
+      }
+    }
+    @media screen and (max-width: 646px) {
+      .youtube-video-div iframe {
+      	height: 314px;
+      }
+    }
+    @media screen and (max-width: 450px) {
+      .youtube-video-div iframe {
+      	height: 200px;
+      }
+    }
+  </style>
+<?php } ?>

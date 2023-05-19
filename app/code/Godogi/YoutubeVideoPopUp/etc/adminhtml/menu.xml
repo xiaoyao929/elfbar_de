@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	 <add id="Godogi_YoutubeVideoPopUp::youtube_videos_import" title="Import Youtube Videos" translate="title" module="Godogi_YoutubeVideoPopUp" sortOrder="100" resource="Godogi_YoutubeVideoPopUp::youtube_videos_import" action="godogi_youtubevideopopup/index/import"  parent="Magento_Backend::system_convert"/>
+    </menu>
+</config>

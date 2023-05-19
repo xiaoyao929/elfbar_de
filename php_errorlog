@@ -1,0 +1,7 @@
+[18-Apr-2023 01:48:17 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getResource() on null in /home/customer/www/m242.mfs-motor.com/public_html/app/design/frontend/Smartwave/porto/Magento_Catalog/templates/product/view/addthis.phtml:21
+Stack trace:
+#0 /home/customer/www/m242.mfs-motor.com/public_html/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/customer/www/m242.mfs-motor.com/public_html/vendor/magento/framework/Interception/Interceptor.php(58): Magento\Framework\View\TemplateEngine\Php->render(Object(Smartwave\Porto\Block\Template), '/home/customer/...', Array)
+#2 /home/customer/www/m242.mfs-motor.com/public_html/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Framework\View\TemplateEngine\Php\Interceptor->___callParent('render', Array)
+#3 /home/customer/www/m242.mfs-motor.com/public_html/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Framework\View\TemplateEngine\Php\Interceptor->Magento\Framework\Interception\{closure}(Object(Smartwave\Porto\Block\Template), '/ in /home/customer/www/m242.mfs-motor.com/public_html/app/design/frontend/Smartwave/porto/Magento_Catalog/templates/product/view/addthis.phtml on line 21
+[21-Apr-2023 02:02:57 UTC] PHP Parse error:  syntax error, unexpected '__' (T_STRING) in /home/customer/www/m242.mfs-motor.com/public_html/vendor/hexamarvel/module-flexibleform/Block/Form.php on line 206

@@ -1,0 +1,12 @@
+<?php
+    $footer = $this->getConfig('porto_settings/footer');
+?>
+<div class="footer">
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer')->toHtml();?>
+    <div class="footer-bottom">
+        <div class="container">
+                                    <address><?php echo $footer['footer_bottom_copyrights'] ?></address>
+                    </div>
+    </div>
+</div>
+<a href="javascript:void(0)" id="totop"><em class="porto-icon-up-open"></em></a>

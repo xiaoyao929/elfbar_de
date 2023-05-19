@@ -1,0 +1,32 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GdprPro
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+// @codingStandardsIgnoreFile
+/** @var \Mageplaza\GdprPro\Helper\Data $helper */
+$helper = $this->helper(\Mageplaza\GdprPro\Helper\Data::class);
+?>
+<?php if ($helper->getEnableTermAndCondition()): ?>
+    <div class="field choice checkbox-tac required">
+        <input type="checkbox" name="agree_gdpr_tac" title="<?php echo __('I agree to the Terms and Conditions') ?>" value="1"
+               id="agree_gdpr_tac" class="checkbox" data-validate="{required:true}">
+        <label for="agree_gdpr_tac" class="label"><span><?php echo __('I agree to the <a href="/terms-conditions" target="_blank">Terms and Conditions</a>') ?></span></label>
+    </div>
+<?php endif; ?>

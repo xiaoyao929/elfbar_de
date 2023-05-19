@@ -1,0 +1,35 @@
+<?php
+/** @var \Sparsh\VideoGallery\Block\VideoBlock $block */
+$data = $block->getVideoCollection();
+$videoTitle  = $block->getTitle();
+?>
+
+    <?php
+    if ($videoTitle) {
+        ?>
+        <?php
+    }
+    ?>
+    <?php if ($data->count() > 0) { ?>
+            <?php foreach ($data as $_data) : ?>
+            <?php $Id = $_data->getId(); ?>
+                <?php $video_method = $block->escapeUrl($_data->getVideo_upload_method()); ?>
+<div class="post-slide">
+		  <div class="post-item post-title-simple">
+                    <?php if ($video_method == 'youtube') { ?>
+                        <iframe width="620" height="360" src="https://www.youtube.com/embed/<?= $block->escapeUrl($_data->getFile()) ?>?rel=0&autoplay=0&modestbranding=1" allowfullscreen class="sparsh-video-gallery-list"></iframe>
+                    <?php } elseif ($video_method == 'vimeo') { ?>
+                        <iframe width="620" height="360" src='https://player.vimeo.com/video/<?= $block->escapeUrl($_data->getFile()) ?>?&byline=0'  allowfullscreen class="sparsh-video-gallery-list"></iframe>
+                    <?php } else { ?>
+                            <video width="620" height="360" controls>
+                            <source src="<?= $block->escapeUrl($block->getMediaUrl().$_data->getFile()) ?>" type="video/mp4">
+                        </video>
+                    <?php } ?>
+		  </div>
+		</div>
+
+        <?php endforeach; ?>
+
+    <?php } else { ?>
+        <center><h3>No Video Found.</h3></center>
+    <?php } ?>

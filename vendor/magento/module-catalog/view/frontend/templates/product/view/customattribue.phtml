@@ -1,0 +1,11 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$_product = $block->getProduct();
+?>
+<?php 
+$attribute_code = 'custom_block_2';
+?>
+<div class="customattributes"><span><?php echo $_product->getResource()->getAttribute($attribute_code)->getFrontend()->getValue($_product);?></span></div>
